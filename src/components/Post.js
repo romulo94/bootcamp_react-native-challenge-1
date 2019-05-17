@@ -1,20 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { View, Text, StyleSheet } from 'react-native';
-
-// import { Container } from './styles';
-
-const Post = ({ data }) => (
-  <View style={styles.container}>
-    <View style={styles.containerTitle}>
-      <Text style={styles.title}>{data.name}</Text>
-      <Text style={styles.email}>{data.email}</Text>
-    </View>
-    <Text>{data.body}</Text>
-  </View>
-);
-
-export default Post;
 
 const styles = StyleSheet.create({
   container: {
@@ -39,3 +26,23 @@ const styles = StyleSheet.create({
     color: '#00000080',
   },
 });
+
+const Post = ({ data }) => (
+  <View style={styles.container}>
+    <View style={styles.containerTitle}>
+      <Text style={styles.title}>{data.name}</Text>
+      <Text style={styles.email}>{data.email}</Text>
+    </View>
+    <Text>{data.body}</Text>
+  </View>
+);
+
+Post.propTypes = {
+  data: PropTypes.shape({
+    name: PropTypes.string,
+    email: PropTypes.string,
+    body: PropTypes.string,
+  }).isRequired,
+};
+
+export default Post;

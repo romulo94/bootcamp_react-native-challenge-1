@@ -3,7 +3,7 @@ import './config/DevToolsConfig';
 
 import React, { Component } from 'react';
 import {
-  StyleSheet, Text, View, ScrollView,
+  StyleSheet, Text, View, ScrollView, Platform,
 } from 'react-native';
 
 import Post from './components/Post';
@@ -18,6 +18,11 @@ const styles = StyleSheet.create({
   bar: {
     backgroundColor: '#fff',
     width: '100%',
+    ...Platform.select({
+      ios: {
+        paddingTop: 20,
+      },
+    }),
   },
   containerScroll: {
     flex: 1,
@@ -37,6 +42,7 @@ export default class App extends Component {
   };
 
   componentDidMount() {
+    // eslint-disable-next-line no-undef
     fetch('https://jsonplaceholder.typicode.com/comments')
       .then(response => response.json())
       .then((json) => {
